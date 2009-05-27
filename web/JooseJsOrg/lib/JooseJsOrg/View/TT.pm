@@ -3,7 +3,9 @@ package JooseJsOrg::View::TT;
 use strict;
 use base 'Catalyst::View::TT';
 
-__PACKAGE__->config(TEMPLATE_EXTENSION => '.tt');
+
+__PACKAGE__->config(TEMPLATE_EXTENSION => '.tt2');
+
 
 =head1 NAME
 

@@ -10,6 +10,33 @@ use parent 'Catalyst::Controller';
 #
 __PACKAGE__->config->{namespace} = '';
 
+
+#================================================================================================================================================================================================================================================
+sub index :Path :Args(0) {
+    my ( $self, $c ) = @_;
+
+#    $c->stash->{displayPath} = $c->req->parameters->{displayPath};
+
+    $c->stash->{template} = 'seed.tt2';
+    $c->detach('View::TT');
+}
+
+
+
+#================================================================================================================================================================================================================================================
+sub default :Path {
+    my ( $self, $c ) = @_;
+
+    $c->response->body( 'Page not found' );
+    $c->response->status(404);
+}
+
+
+
+#================================================================================================================================================================================================================================================
+sub end : ActionClass('RenderView') {}
+
+
 =head1 NAME
 
 JooseJsOrg::Controller::Root - Root Controller for JooseJsOrg
@@ -26,19 +53,6 @@ JooseJsOrg::Controller::Root - Root Controller for JooseJsOrg
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
-
-    # Hello World
-    $c->response->body( $c->welcome_message );
-}
-
-sub default :Path {
-    my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status(404);
-    
-}
 
 =head2 end
 
@@ -46,7 +60,6 @@ Attempt to render a view, if needed.
 
 =cut 
 
-sub end : ActionClass('RenderView') {}
 
 =head1 AUTHOR
 

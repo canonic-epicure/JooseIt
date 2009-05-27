@@ -16,7 +16,24 @@ use Catalyst qw/
 
 our $VERSION = '0.01';
 
-__PACKAGE__->config( name => 'JooseJsOrg' );
+__PACKAGE__->config(
+ 
+    name => 'JooseJsOrg',
+    
+    default_view => 'View::JSON',
+    
+    'View::TT' => {
+        CATALYST_VAR => 'Catalyst',
+        INCLUDE_PATH => [        
+            __PACKAGE__->path_to( 'root', 'tt' )
+        ],
+    },
+    
+    'View::JSON' => {      
+        expose_stash => qr/^(?:js_|metaData)/
+    }
+    
+);
 
 # Start the application
 __PACKAGE__->setup();

@@ -11,7 +11,14 @@
         <script type="text/javascript" src="/inc/JooseX/Bridge/Ext.js"></script>
         <script type="text/javascript" src="/inc/JooseX/Bridge/Ext/Convertor.js"></script>
         <script type="text/javascript" src="/inc/Task/ExtJS/Debug/All.js"></script>
-		
+        
+        <script type="text/javascript" src="/inc/JooseX/SimpleRequest.js"></script>
+        
+        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended.js"></script>
+        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Manager.js"></script>
+        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/ScriptTag.js"></script>
+        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/AjaxAsync.js"></script>
+        
 		<script type="text/javascript" src="lib/JooseJsOrg.js"></script>
 		
 	</head>
@@ -22,7 +29,7 @@
 
 
 
-[%
+[%#
 
         <script type="text/javascript" src="/lib/Jemplate.js"></script>     
         <script type="text/javascript" src="/lib/jScout.js"></script>
@@ -68,7 +75,7 @@
                 use(['Symbie::Dispatcher', 'SymbieOrg::I18n::' + lang],function(){          
                     I18n = SymbieOrg.I18n[lang];
                     
-                    var displayPath = "[% displayPath %]" || Ext.ux.util.Cookies.get('symbie_org_current_token') || '/SymbieOrg::MainLayout.center/SymbieOrg::Home';
+                    var displayPath = "[ % displayPath % ]" || Ext.ux.util.Cookies.get('symbie_org_current_token') || '/SymbieOrg::MainLayout.center/SymbieOrg::Home';
                     
                     Symbie.Dispatcher.dispatch(displayPath, {
                         callback : function(){
