@@ -5,7 +5,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="/inc/Task/ExtJS/static/css/ext-all.css"></link>
 		
-		<script type="text/javascript" src="/inc/Task/Joose/Stable.js"></script>
+		<script type="text/javascript" src="/inc/Task/Joose/core.js"></script>
 		
         <script type="text/javascript" src="/inc/Task/ExtJS/Adapter/Ext.js"></script>
         <script type="text/javascript" src="/inc/JooseX/Bridge/Ext.js"></script>
@@ -19,8 +19,21 @@
         <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/ScriptTag.js"></script>
         <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/AjaxAsync.js"></script>
         
-		<script type="text/javascript" src="lib/JooseJsOrg.js"></script>
-		
+        <script type="text/javascript">
+            Joose.Namespace.Manager.my.INC = [ [ 'lib' ], [ '/inc' ] ]
+        </script>
+        
+        
+        <script type="text/javascript">
+        
+            use('JooseJsOrg', function () {
+                new JooseJsOrg({
+                    initialRoute : '[% displayPath %]'
+                }).run()
+            })
+            
+        </script>
+        
 	</head>
 	
 	<body>
