@@ -14,14 +14,7 @@
         
         <script type="text/javascript" src="/inc/JooseX/SimpleRequest.js"></script>
         
-        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended.js"></script>
-        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Manager.js"></script>
-        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/ScriptTag.js"></script>
-        <script type="text/javascript" src="/inc/JooseX/Namespace/Depended/Transport/AjaxAsync.js"></script>
-        
-        <script type="text/javascript">
-            Joose.Namespace.Manager.my.INC = [ [ 'lib' ], [ '/inc' ] ]
-        </script>
+        <script type="text/javascript" src="/inc/Task/JooseX/Namespace/Depended/core.js"></script>
         
         
         <script type="text/javascript">
