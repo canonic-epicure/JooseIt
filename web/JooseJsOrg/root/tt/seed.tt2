@@ -19,9 +19,11 @@
         
         <script type="text/javascript">
         
-            use('JooseJsOrg', function () {
+            use( [ 'JooseJsOrg', 'JooseJsOrg.Router' ], function () {
                 new JooseJsOrg({
-                    initialRoute : '[% displayPath %]'
+                  //rootClass       : JooseJsOrg.Root,
+                    routerClass     : JooseJsOrg.Router,
+                    initialRoute    : '[% displayPath %]'
                 }).run()
             })
             
