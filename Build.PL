@@ -1,15 +1,17 @@
-use Module::Build::JSAN::Installable;
+use inc::Module::JSAN::DSL;
 
-my $build = Module::Build::JSAN::Installable->new(
+name                JooseIt
+version             0.01
+    
+author              'Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>',
+abstract            'Joose.it web-site'
+    
+license             lgpl
+    
+requires            Symbie                          0.01
+requires            SymbieX.History                 0.01
+requires            SymbieX.Template.Shotenjin      0.01
 
-	module_name    => 'Symbie',
-	create_makefile_pl => 'passthrough',
-	dist_version   => 0.01,
-	dist_author   => 'SamuraiJack',
-	dist_abstract  => 'Framework for web-applications which looks like web-sites',
-	license        => 'perl'
-);
+test_requires       Test.Run                        0.01
 
-$build->create_build_script;
-
-
+docs_markup         mmd

@@ -8,3 +8,4 @@ doc
 META.json
 Makefile.PL
 Makefile
+/inc
