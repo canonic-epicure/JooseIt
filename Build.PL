@@ -4,7 +4,7 @@ name                JooseIt
 version             0.01
     
 author              'Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>',
-abstract            'Joose.it web-site'
+abstract            'Joose.it web-site, written in Symbie framework'
     
 license             lgpl
     
@@ -12,6 +12,7 @@ requires            Symbie                          0.01
 requires            SymbieX.History                 0.01
 requires            SymbieX.Template.Shotenjin      0.01
 
-test_requires       Test.Run                        0.01
+requires            ExtX.Layout                     0.01
+
 
 docs_markup         mmd
