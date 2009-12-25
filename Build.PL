@@ -11,6 +11,7 @@ license             lgpl
 requires            Symbie                          0.01
 requires            SymbieX.History                 0.01
 requires            SymbieX.Template.Shotenjin      0.01
+requires            Raphael                         1.2.8
 
 requires            ExtX.Layout                     0.01
 

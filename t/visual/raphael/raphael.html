@@ -10,11 +10,7 @@
         <script type="text/javascript">
             JooseX.Namespace.Depended.Manager.my.INC = [ '/jsan', '../../../lib' ]
             
-            use({ 
-                type : 'nonjoose', 
-                token : 'Raphael'
-                 
-            }, function () {
+            use('nonjoose://Raphael', function () {
                 
                 
                 var angle = 45;
@@ -66,6 +62,11 @@
                     img.attr('src', 'home.png')
                 }
                 
+                img.node.onclick = function () {
+                    img.animate({ scale : 1.1 }, 100, "backIn", function () {
+                        img.animate({ scale : 0.9 }, 100, "backIn")
+                    })
+                }
                 
                 setTimeout(function () {R.safari();});
                 
