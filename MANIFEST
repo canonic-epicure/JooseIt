@@ -1,0 +1,66 @@
+inc/Module/Build/Functions/DSL.pm
+inc/Module/Build/JSAN/Installable.pm
+inc/Module/JSAN.pm
+inc/Module/JSAN/DSL.pm
+lib/JooseIt.js
+lib/JooseIt/Control/Mapped.js
+lib/JooseIt/Layout/Site.js
+lib/JooseIt/Router.js
+lib/JooseIt/Template/Base.js
+lib/JooseIt/Widget/Home.js
+lib/JooseIt/Widget/NotFound.js
+lib/JooseIt/Widget/Root.js
+MANIFEST			This list of files
+MANIFEST.SKIP
+README
+static/css/DemoApp.Control.Button.css
+static/css/JooseIt.css
+static/images/background/background1_01.png
+static/images/background/background1_02.png
+static/images/background/background_01.png
+static/images/background/background_02.png
+static/images/background/line-center.png
+static/images/background/line-left.png
+static/images/background/line-right.png
+static/images/buttons-rect/about.png
+static/images/buttons-rect/contacts.png
+static/images/buttons-rect/download.png
+static/images/buttons-rect/forum.png
+static/images/buttons-rect/home.png
+static/images/buttons/button-about-big.png
+static/images/buttons/button-about-small-checked_03.png
+static/images/buttons/button-about-small-chosen_03.png
+static/images/buttons/button-about-small_03.png
+static/images/buttons/button-contacts-big.png
+static/images/buttons/button-contacts-small-checked.png
+static/images/buttons/button-contacts-small-chosen.png
+static/images/buttons/button-contacts-small.png
+static/images/buttons/button-download-big.png
+static/images/buttons/button-download-small-checked.png
+static/images/buttons/button-download-small-chosen.png
+static/images/buttons/button-download-small.png
+static/images/buttons/button-forum-big.png
+static/images/buttons/button-forum-small-checked.png
+static/images/buttons/button-forum-small-chosen.png
+static/images/buttons/button-forum-small.png
+static/images/buttons/button-home-big.png
+static/images/buttons/button-home-small-checked.png
+static/images/buttons/button-home-small-chosen.png
+static/images/buttons/button-home-small.png
+static/images/favicon.ico
+static/images/logo_03.png
+'static/images/overview/JOOSE IT - vnutri.JPG'
+'static/images/overview/JOOSE IT- home.JPG'
+'static/images/overview/JOOSE IT- home1.JPG'
+'static/images/overview/джус ит.JPG'
+static/lib/raphael.js
+t/visual/index.html
+t/visual/raphael.html
+t/visual/raphael/button-home-big.png
+t/visual/raphael/button-home-small-checked.png
+t/visual/raphael/button-home-small.png
+t/visual/raphael/home.png
+t/visual/raphael/raphael.js
+t/visual/raphael/test.css
+t/visual/raphael/test.html
+t/visual/raphael/test.js

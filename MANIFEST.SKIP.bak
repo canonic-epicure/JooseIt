@@ -1,0 +1,19 @@
+#!include_default
+
+# Avoid Module::Build generated and utility files.
+\bBuild$
+\bBuild.bat$
+\b_build
+\bBuild.COM$
+\bBUILD.COM$
+\bbuild.com$
+
+# Avoid archives of this distribution
+\bJooseIt-[\d\.\_]+
+^Build.PL$
+.tar.gz$
+^tests/lib/
+JooseIt-0.01
+^\.project$
+^\.git\b
+^\.externalToolBuilders\b
