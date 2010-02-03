@@ -64,3 +64,4 @@ t/visual/raphael/raphael.js
 t/visual/raphael/test.css
 t/visual/raphael/test.html
 t/visual/raphael/test.js
+META.json
