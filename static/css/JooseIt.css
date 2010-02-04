@@ -8,8 +8,6 @@ body {
 	line-height : normal;
 	
 	background-color: white;
-	background-image: url(../images/background/page-shortened.png);
-	background-repeat: repeat-x;
 }
 
 a {
@@ -22,18 +20,13 @@ a:hover {
 }
 
 
-h1 {
-	font-size: 2em;
-	padding : 0.6em 0 0.6em 0;
+.JooseIt-Content {
+	width : 990px
 }
 
-
-h2 {
-    font-size: 1.3em;
-    padding : 0.3em 0 0.3em 0;
-}
-
-
-p {
-	padding-bottom: 0.3em;
+.JooseIt-Content-Header {
+    background-image: url(../images/background/page.png);
+    background-repeat: repeat-x;
+    
+    border-bottom : 1px solid #999999;
 }
