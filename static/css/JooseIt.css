@@ -8,6 +8,8 @@ body {
 	line-height : normal;
 	
 	background-color: white;
+	
+	overflow-y : auto !important;
 }
 
 a {
