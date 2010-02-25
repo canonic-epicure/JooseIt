@@ -7,9 +7,9 @@ body {
 	font-weight : normal;
 	line-height : normal;
 	
-	background-color: white;
-	
 	overflow-y : auto !important;
+	
+	background-color : #888888;
 }
 
 a {
@@ -23,12 +23,29 @@ a:hover {
 
 
 .JooseIt-Content {
-	width : 990px
+	width : 900px
 }
+
+
+.JooseIt-Content-Center {
+	background-color: white;
+	
+	padding-bottom : 20px;
+}
+
 
 .JooseIt-Content-Header {
     background-image: url(../images/background/page.png);
     background-repeat: repeat-x;
     
     border-bottom : 1px solid #999999;
+}
+
+
+.JooseIt-Content-Footer {
+	border-top : 1px solid #555555;
+	color : #CCCCCC;
+	padding-top : 20px;
+	
+	font-size:12px;
 }
