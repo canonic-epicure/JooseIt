@@ -9,8 +9,13 @@ body {
 	
 	overflow-y : auto !important;
 	
-	background-color : #888888;
+	background-color : white;
 }
+
+.grayed {
+	background-color : #888888 !important;
+}
+
 
 a {
 	text-decoration : none
