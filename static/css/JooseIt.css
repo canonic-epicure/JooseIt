@@ -59,7 +59,8 @@ a:hover {
 .JooseIt-Widget-NotFound {
 	text-align: center;
 	
-	font-size:16px;
+	font-size   : 26px;
+	font-weight : bold;
 	
 	position: relative;
 }
