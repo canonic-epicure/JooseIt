@@ -6,7 +6,14 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/lib";
 
+use JSON;
 use Path::Class;
+use Getopt::LL::Simple qw(
+    --mhtmlroot=s
+);
+
+my $mhtml_root = $ARGV{'--mhtmlroot'} || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/buttons.txt';
+
 
 
 use CSS::Embedder;
@@ -14,10 +21,14 @@ use CSS::Embedder;
 my $embedder = CSS::Embedder->new;
 
 
-my $buttons_dir = dir("$FindBin::Bin/../blib/lib/JooseIt/static/images/navigation");
+my $blib_dir        = dir("$FindBin::Bin/../blib");
+my $buttons_dir     = $blib_dir->subdir("lib/JooseIt/static/images/navigation");
 
 my $buttons = [ 'about', 'download', 'forum', 'home', 'resources', 'go-back' ];
 
+
+#======================================================================================================================================================================================
+# generating mhtml frame
 
 foreach my $button (@$buttons) {
     my $button_file         = $buttons_dir->file($button . ".png");
@@ -29,24 +40,41 @@ foreach my $button (@$buttons) {
 }
 
 
-my $buttons_txt_file = file("$FindBin::Bin/../blib/lib/JooseIt/static/buttons.txt");
 
-my $fh = $buttons_txt_file->openw;
+my $fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.txt")->openw;
 
 print $fh $embedder->mhtml_as_string;
 
 $fh->close;
 
 
+#======================================================================================================================================================================================
+# generating data uris and JSON structure for app
 
-__END__
+my $buttons_uris = {};
 
-ROOT=http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/css/buttons.css
-CSS_FILE=blib/lib/JooseIt/static/css/buttons.css
+foreach my $button (@$buttons) {
+    my $button_file         = $buttons_dir->file($button . ".png");
+    my $button_color_file   = $buttons_dir->file($button . "-color.png");
+    
+    
+    $buttons_uris->{MHTML}->{$button} = {
+        src         => "mhtml:$mhtml_root!" . $button_file->basename,
+        activeSrc   => "mhtml:$mhtml_root!" . $button_color_file->basename
+    };
+    
+    $buttons_uris->{DATAURI}->{$button} = {
+        src         => $embedder->get_data_uri_for($button_file),
+        activeSrc   => $embedder->get_data_uri_for($button_color_file)
+    }
+}
 
 
-chmod 664 $CSS_FILE
+my $json = JSON->new->pretty;
 
-java -jar bin/cssembed-0.3.2.jar --mhtml --mhtmlroot $ROOT $CSS_FILE > $CSS_FILE.mhtml
 
-mv $CSS_FILE.mhtml $CSS_FILE
+$fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.json")->openw;
+
+print $fh "JOOSE_IT_BUTTONS = " . $json->encode($buttons_uris);
+
+$fh->close;
