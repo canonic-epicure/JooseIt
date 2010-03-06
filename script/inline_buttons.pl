@@ -12,7 +12,7 @@ use Getopt::LL::Simple qw(
     --mhtmlroot=s
 );
 
-my $mhtml_root = $ARGV{'--mhtmlroot'} || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/buttons.txt';
+my $mhtml_root = $ARGV{'--mhtmlroot'} || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/images/navigation/buttons.txt';
 
 
 
@@ -33,7 +33,6 @@ my $buttons = [ 'about', 'download', 'forum', 'home', 'resources', 'go-back' ];
 foreach my $button (@$buttons) {
     my $button_file         = $buttons_dir->file($button . ".png");
     my $button_color_file   = $buttons_dir->file($button . "-color.png");
-    
     
     $embedder->add_image($button_file);
     $embedder->add_image($button_color_file);
@@ -78,3 +77,37 @@ $fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.json")->open
 print $fh "JOOSE_IT_BUTTONS = " . $json->encode($buttons_uris);
 
 $fh->close;
+
+
+
+
+##======================================================================================================================================================================================
+## generating mhtml frame
+#
+#my $text = "";
+#
+#foreach my $button (@$buttons) {
+#    my $button_file         = $buttons_dir->file($button . ".png");
+#    my $button_color_file   = $buttons_dir->file($button . "-color.png");
+#    
+#    my $emb1 = CSS::Embedder->new;
+#    $emb1->add_image($button_file);
+#    
+#    $text .= $emb1->mhtml_as_string . "\n\nSome text\n\n";
+#    
+#    my $emb2 = CSS::Embedder->new;
+#    $emb2->add_image($button_color_file);
+#    
+#    $text .= $emb2->mhtml_as_string . "\n\nSome text\n\n";
+#    
+#    $embedder->add_image($button_file);
+#    $embedder->add_image($button_color_file);
+#}
+#
+#
+#
+#my $fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.txt")->openw;
+#
+#print $fh $text; #$embedder->mhtml_as_string;
+#
+#$fh->close;
