@@ -39,7 +39,7 @@ sub as_string {
     my $separator   = $self->separator;
     my @images      = @{$self->images};
     
-    my $content = "/*\nContent-Type: multipart/related; boundary=\"$separator\"\n\n";
+    my $content = "Content-Type: multipart/alternative; boundary=\"$separator\"\n\n";
     
     foreach my $image_file (@images) {
         $content .= '--' . $separator . "\n";
@@ -54,7 +54,7 @@ sub as_string {
         $content .= '--' . $separator . '--' . "\n";
     }
     
-    $content .= "*/";
+#    $content .= "*/";
     
     return $content;
 }
