@@ -54,8 +54,6 @@ sub as_string {
         $content .= '--' . $separator . '--' . "\n";
     }
     
-#    $content .= "*/";
-    
     return $content;
 }
 
