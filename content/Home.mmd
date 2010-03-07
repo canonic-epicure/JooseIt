@@ -1,20 +1,17 @@
 WHAT IS Joose?
 ==============
 
-Joose is a complete object system for JavaScript. Consider any modern object-oriented language. 
-It provides keywords for attribute declaration, object construction, inheritance, and maybe more. These keywords are part of the language, and you don't care how they are implemented.
+Joose is a complete modern object system for JavaScript based on concepts from many programming languages such as Ruby, Smalltalk, Perl and, well, JavaScript. 
+It provides "keywords" or "syntactic sugar" for class declaration, object construction, inheritance and more. These keywords feel like they become a part of the language and you don't have to care about the implementation details of all these concepts. 
 
-Joose aims to do the same thing for JavaScript. We can't actually create new keywords, but we do offer "sugar" that looks a lot like them. More importantly, with Joose, you define your class declaratively, 
-without needing to know about prototype chains, etc.
-
-With Joose, you can concentrate on the logical structure of your classes, focusing on "what" rather than "how". A class definition with Joose reads like a list of very concise English sentences.
+With Joose, you can concentrate on the logical structure of your code, focusing on "what" rather than "how". A class definition with Joose reads like a list of very concise English sentences.
 
 Joose provides complete introspection for all Joose-using classes. This means you can ask classes about their attributes, parents, children, methods, etc., all using a well-defined API.
 
 Joose is based in large part on the [Moose][1] system, which in turn borrows a lot of from Perl 6 object system, as well as drawing on the best ideas from CLOS, Smalltalk, and many other languages.
 
 
-WHAT ISN'T Joose?
+WHAT Joose is not?
 =================
 
 Joose isn't a new language or sources preprocessor. The code written in Joose, executes like regular JavaScript, and can be run in any modern JavaScript engine.
@@ -26,5 +23,5 @@ WHY Joose?
 Joose makes JavaScript OO both simpler and more powerful. It encapsulates JavaScript power tools in high-level declarative APIs which are easy to use. 
 Best of all, you don't need to be a wizard to use it. 
 
-But if you want to dig about in the guts, Joose lets you do that too, by using and extending its powerful introspection API.
+But if you want to digg about in the guts, Joose lets you do that too, by using and extending its powerful introspection API or by providing your own meta class implementation.
 
