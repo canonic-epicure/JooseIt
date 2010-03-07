@@ -12,11 +12,15 @@ use Getopt::LL::Simple qw(
     --mhtmlroot=s
 );
 
-my $mhtml_root = $ARGV{'--mhtmlroot'} || $ENV{JOOSEIT_ROOT} && '$ENV{JOOSEIT_ROOT}lib/JooseIt/static/images/navigation/buttons.txt' || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/images/navigation/buttons.txt';
-
-
-
+use Deployer;
 use CSS::Embedder;
+
+my $root = Deployer->root;
+
+
+my $mhtml_root = $ARGV{'--mhtmlroot'} || '$root/lib/JooseIt/static/images/navigation/buttons.txt';
+
+
 
 my $embedder = CSS::Embedder->new;
 
@@ -74,7 +78,7 @@ foreach my $button (@$buttons) {
 my $json = JSON->new->pretty;
 
 
-$fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.json")->openw;
+$fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.js")->openw;
 
 print $fh "JOOSE_IT_BUTTONS = " . $json->encode($buttons_uris);
 
