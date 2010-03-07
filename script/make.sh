@@ -1,5 +1,7 @@
+export JOOSEIT_ROOT=http://catalyst-dev/JavaScript/JooseIt/blib/
+
 ./Build
 
 script/inline_buttons.pl
 
-cp t/visual/index.html blib/index.html
+cp -f t/visual/index.html blib/index.html

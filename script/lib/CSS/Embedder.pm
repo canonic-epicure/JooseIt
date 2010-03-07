@@ -20,22 +20,6 @@ has 'mime' => (
 );
 
 
-has 'mhtml' => (
-    is => 'rw',
-     
-    default => sub {
-        my ($self) = @_;
-        
-        return CSS::Embedder::MHTMLFrame->new(embedder => $self);
-    },
-    
-    handles => {
-        add_image           => 'add_image',
-        mhtml_as_string     => 'as_string'
-    }
-);
-
-
 sub get_base64_content_for {
     my ($self, $file_name) = @_;
     

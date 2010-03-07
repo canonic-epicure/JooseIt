@@ -12,7 +12,7 @@ use Getopt::LL::Simple qw(
     --mhtmlroot=s
 );
 
-my $mhtml_root = $ARGV{'--mhtmlroot'} || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/images/navigation/buttons.txt';
+my $mhtml_root = $ARGV{'--mhtmlroot'} || $ENV{JOOSEIT_ROOT} && '$ENV{JOOSEIT_ROOT}lib/JooseIt/static/images/navigation/buttons.txt' || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/images/navigation/buttons.txt';
 
 
 
@@ -30,19 +30,21 @@ my $buttons = [ 'about', 'download', 'forum', 'home', 'resources', 'go-back' ];
 #======================================================================================================================================================================================
 # generating mhtml frame
 
+my $frame = CSS::Embedder::MHTMLFrame->new(embedder => $embedder);
+
 foreach my $button (@$buttons) {
     my $button_file         = $buttons_dir->file($button . ".png");
     my $button_color_file   = $buttons_dir->file($button . "-color.png");
     
-    $embedder->add_image($button_file);
-    $embedder->add_image($button_color_file);
+    $frame->add_image($button_file);
+    $frame->add_image($button_color_file);
 }
 
 
 
 my $fh = $blib_dir->file("lib/JooseIt/static/images/navigation/buttons.txt")->openw;
 
-print $fh $embedder->mhtml_as_string;
+print $fh $frame->as_string;
 
 $fh->close;
 
