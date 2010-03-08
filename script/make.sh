@@ -1,5 +1,5 @@
 #======================================================================================================================================================================================
-# concatenating/minimizing js 
+# updating content 
 
 script/build_pages.sh
 
@@ -10,6 +10,8 @@ script/build_pages.sh
 # copying files 
 
 ./Build
+
+cp -f t/visual/index.html blib/index.html
 
 
 #======================================================================================================================================================================================
@@ -31,6 +33,16 @@ java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/Task/JooseIt.js blib/lib/Task/
 
 
 #======================================================================================================================================================================================
-# copying/updating index.html 
+# concatenating/minimizing css 
+
+script/concat_css.pl
+
+java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/JooseIt/static/css/concat-all.css blib/lib/JooseIt/static/css/concat-all.css 
     
-cp -f t/visual/index.html blib/index.html
+# gzip blib/lib/Task/JooseIt.js
+
+
+#======================================================================================================================================================================================
+# updating index.html 
+    
+script/update_index.pl

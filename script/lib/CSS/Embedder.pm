@@ -8,8 +8,6 @@ use MIME::Base64;
 use MIME::Types;
 
 
-use CSS::Embedder::MHTMLFrame;
-
 
 has 'mime' => (
     is => 'rw',

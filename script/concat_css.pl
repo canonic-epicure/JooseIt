@@ -11,58 +11,48 @@ use Path::Class;
 use LWP::Simple;
 use File::Path qw(make_path remove_tree);
 
-
+use Index::HTML;
 use Deployer;
 
 
-
 #======================================================================================================================================================================================
-# filtering urls 
+# getting urls of stylesheets 
 
-`cat $FindBin::Bin/components.txt | grep http: > $FindBin::Bin/components.urls.txt`;
+my $blib_dir        = dir("$FindBin::Bin/../blib");
 
-my $components = file("$FindBin::Bin/components.urls.txt")->slurp; 
 
+my $index           = Index::HTML->new( file => $blib_dir->file('index.html'));
+
+my @styles          = $index->get_styles;
 
 
 #======================================================================================================================================================================================
 # concatenating files 
 
-my $js = "";
+my $root = Deployer->root;
 
-foreach my $url (split "\n", $components) {
-    next unless $url;
+my $css = "";
+
+foreach my $style (@styles) {
+    my $url     = URI->new_abs($style, $root . '/');
     
     $url =~ s/\?.*//;
+    next unless $url =~ m/\.css$/;
     
-    next unless $url =~ m/\.js$/;
-    
-    
-    my $uri         = URI->new($url);
-    
-    my $rel_uri     = $uri->rel(Deployer->config->{components_root});
-    my $abs_uri     = URI->new_abs($rel_uri, Deployer->root . '/');
-    
-    
-    my $component = get($abs_uri) || "";
-    
-    $js .= "\n;\n" . $component;
+    $css .= get($url) . "\n";
 }
 
 
 #======================================================================================================================================================================================
-# writing into /blib 
+# writing into /blib/lib/JooseIt/static/css/concat-all.css 
 
-my $blib_dir        = dir("$FindBin::Bin/../blib");
 
-my $task_file       = file($blib_dir, 'lib', 'Task', 'JooseIt.js');
-
-make_path($task_file->dir . "");
+my $task_file       = file($blib_dir, 'lib', 'JooseIt', 'static', 'css', 'concat-all.css');
 
 
 my $fh = $task_file->openw;
 
-print $fh $js;
+print $fh $css;
 
 $fh->close;
 

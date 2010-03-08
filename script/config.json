@@ -1,3 +1,5 @@
 {
-    "root" : "http://catalyst-dev/JavaScript/JooseIt/blib/"
+    "root" : "http://catalyst-dev/JavaScript/JooseIt/blib/",
+    
+    "components_root" : "http://catalyst-dev/JavaScript/JooseIt/blib/"
 }
