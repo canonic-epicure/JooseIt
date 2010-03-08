@@ -7,6 +7,8 @@ use FindBin;
 use lib "$FindBin::Bin/lib";
 
 use URI;
+$URI::ABS_REMOTE_LEADING_DOTS = 1;
+
 use Path::Class;
 use LWP::Simple;
 use File::Path qw(make_path remove_tree);
