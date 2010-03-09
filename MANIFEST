@@ -75,6 +75,7 @@ script/lib/CSS/Embedder.pm
 script/lib/CSS/Embedder/MHTMLFrame.pm
 script/lib/Deployer.pm
 script/lib/Index/HTML.pm
+script/make-fast.sh
 script/make.sh
 script/optimize_png.pl
 script/rsync_jsan.sh
@@ -83,6 +84,7 @@ static/css/JooseIt.css
 static/css/markdown-content.css
 static/images/background/page.png
 static/images/favicon.ico
+static/images/forkme_right_green_007200.png
 static/images/logo.png
 static/images/navigation/about-color.png
 static/images/navigation/about.png
