@@ -21,7 +21,7 @@ use Deployer;
 my $blib_dir        = dir("$FindBin::Bin/../blib");
 
 
-my $index           = Index::HTML->new( file => $blib_dir->file('index.html'));
+my $index           = Index::HTML->new( filename => $blib_dir->file('index.html'));
 
 my @styles          = $index->get_styles;
 

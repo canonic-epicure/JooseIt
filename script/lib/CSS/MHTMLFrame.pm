@@ -1,4 +1,4 @@
-package CSS::Embedder::MHTMLFrame;
+package CSS::MHTMLFrame;
 
 use Moose;
 

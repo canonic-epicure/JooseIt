@@ -62,6 +62,7 @@ lib/JooseIt/Widget/Root.js
 MANIFEST
 MANIFEST.SKIP
 META.json
+null
 README.md
 script/build_pages.sh
 script/components.txt
@@ -73,7 +74,11 @@ script/embed_images.pl
 script/inline_buttons.pl
 script/lib/CSS/Embedder.pm
 script/lib/CSS/Embedder/MHTMLFrame.pm
+script/lib/CSS/Embedder/StyleSheet.pm
+script/lib/CSS/MHTMLFrame.pm
+script/lib/CSS/StyleSheet.pm
 script/lib/Deployer.pm
+script/lib/Image/PNG.pm
 script/lib/Index/HTML.pm
 script/make-fast.sh
 script/make.sh

@@ -14,7 +14,7 @@ use Index::HTML;
 my $blib_dir        = dir("$FindBin::Bin/../blib");
 
 my $index           = Index::HTML->new({ 
-    file => $blib_dir->file('index.html')
+    filename => $blib_dir->file('index.html')
 });
 
 
@@ -60,9 +60,4 @@ foreach (@styles) {
 #======================================================================================================================================================================================
 # writing result
 
-
-my $fh = $blib_dir->file("index.html")->openw;
-
-print $fh $index->content;
-
-$fh->close;
+$index->save();

@@ -14,7 +14,7 @@ use Getopt::LL::Simple qw(
 
 use Deployer;
 use CSS::Embedder;
-use CSS::Embedder::MHTMLFrame;
+use CSS::MHTMLFrame;
 
 my $root = Deployer->root;
 
@@ -35,7 +35,7 @@ my $buttons = [ 'about', 'download', 'forum', 'home', 'resources', 'go-back' ];
 #======================================================================================================================================================================================
 # generating mhtml frame
 
-my $frame = CSS::Embedder::MHTMLFrame->new(embedder => $embedder);
+my $frame = CSS::MHTMLFrame->new(embedder => $embedder);
 
 foreach my $button (@$buttons) {
     my $button_file         = $buttons_dir->file($button . ".png");

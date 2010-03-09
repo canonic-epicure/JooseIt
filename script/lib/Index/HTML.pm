@@ -7,7 +7,7 @@ use Path::Class;
 
 
 
-has 'file' => (
+has 'filename' => (
     is => 'rw',
      
     required => 1
@@ -22,7 +22,21 @@ sub BUILD {
     my ($self) = @_;
     
     
-    $self->content(scalar($self->file->slurp));
+    $self->content(scalar(file($self->filename)->slurp));
+}
+
+
+sub save {
+    my ($self, $filename) = @_;
+    
+    my $file = file($filename || $self->filename);
+    
+    
+    my $fh = $file->openw;
+    
+    print $fh $self->content;
+    
+    $fh->close;
 }
 
 

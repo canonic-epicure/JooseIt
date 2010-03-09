@@ -6,36 +6,46 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/lib";
 
-use JSON;
+use File::Find::Rule;
 use Path::Class;
-use Getopt::LL::Simple qw(
-    --mhtmlroot=s
-);
-
-my $mhtml_root = $ARGV{'--mhtmlroot'} || 'http://catalyst-dev/JavaScript/JooseIt/blib/lib/JooseIt/static/images/navigation/buttons.txt';
+use Deployer;
+use CSS::Embedder;
+use CSS::StyleSheet;
 
 
-
-use CSS::DOM;
-
-my $sheet = CSS::DOM::parse( file("$FindBin::Bin/css.css")->slurp );
+my $blib_dir        = dir("$FindBin::Bin/../blib");
+my $css_dir         = $blib_dir->subdir('lib', 'JooseIt', 'static', 'css');
 
 
-print $sheet->cssRules->[0]->style->getPropertyValue('font-variant');
+my $embedder        = CSS::Embedder->new();
 
-#  use CSS::DOM::Style;
-#  my $style = CSS::DOM::Style::parse(
-#      'background: red; font-size: large'
-#  );
-#
-#  my $other_sheet = new CSS::DOM; # empty
-#  $other_sheet->insertRule(
-#     'a{ text-decoration: none }',
-#      $other_sheet->cssRules->length,
-#  );
-#  # etc.
-#  
-#  # access DOM properties
-#  
-#  $style->fontSize;          # returns 'large'
-#  $style->fontSize('small'); # change it
+
+my @css_files = File::Find::Rule->or(
+    File::Find::Rule->file->name('*.css')
+)->in($css_dir);
+
+
+$, = "\n";
+
+foreach my $file (@css_files) {
+    
+    my $stylesheet = CSS::StyleSheet->new({
+        filename        => $file,
+        embedder        => $embedder
+    });
+    
+    my @background_urls     = $stylesheet->get_background_images_urls;
+    
+    print @background_urls;
+    
+    
+    foreach my $url (@background_urls) {
+        $stylesheet->replace_image_with_data_uri($url);
+    }
+    
+    $stylesheet->save();
+}
+
+
+
+
