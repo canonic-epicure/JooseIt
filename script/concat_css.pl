@@ -19,6 +19,7 @@ use Deployer;
 # getting urls of stylesheets 
 
 my $blib_dir        = dir("$FindBin::Bin/../blib");
+my $task_file       = file($blib_dir, 'lib', 'JooseIt', 'static', 'css', 'concat-all.css');
 
 
 my $index           = Index::HTML->new( filename => $blib_dir->file('index.html'));
@@ -38,6 +39,7 @@ foreach my $style (@styles) {
     
     $url =~ s/\?.*//;
     next unless $url =~ m/\.css$/;
+    die "concat_css.pl used on already concatenated index file" if $url =~ m/concat-all\.css$/; 
     
     $css .= get($url) . "\n";
 }
@@ -46,8 +48,6 @@ foreach my $style (@styles) {
 #======================================================================================================================================================================================
 # writing into /blib/lib/JooseIt/static/css/concat-all.css 
 
-
-my $task_file       = file($blib_dir, 'lib', 'JooseIt', 'static', 'css', 'concat-all.css');
 
 
 my $fh = $task_file->openw;

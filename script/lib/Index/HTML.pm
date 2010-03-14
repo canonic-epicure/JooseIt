@@ -41,18 +41,22 @@ sub save {
 
 
 sub get_scripts {
-    my ($self) = @_;
+    my ($self, $double_quoted_only) = @_;
     
-    my @scripts     = $self->content =~ m!<script\s+.*?src=["'](.+)["'].*?>!ig;
+    my $quote = $double_quoted_only ? qr/"/ : qr/['"]/;
+    
+    my @scripts     = $self->content =~ m!<script\s+.*?src=$quote(.+)$quote.*?>!ig;
     
     return @scripts;
 }
 
 
 sub get_styles {
-    my ($self) = @_;
+    my ($self, $double_quoted_only) = @_;
     
-    my @styles      = $self->content =~ m!<link\s+.*?href=["'](.+)["'].*?>!ig;
+    my $quote = $double_quoted_only ? qr/"/ : qr/['"]/;
+    
+    my @styles      = $self->content =~ m!<link\s+.*?href=$quote(.+)$quote.*?>!ig;
     
     return @styles;
 }

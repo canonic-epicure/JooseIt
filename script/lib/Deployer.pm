@@ -23,4 +23,23 @@ sub root {
     return $root;
 }
 
+
+
+sub save_key {
+    my ($self, $key, $value) = @_;
+    
+    my $config = $self->config;
+    
+    $config->{ $key } = $value;
+    
+    my $fh = file("$FindBin::Bin/config.json")->openw;
+    
+    print $fh JSON->new->pretty->encode($config);
+    
+    $fh->close;
+    
+    return $value;
+}
+
+
 __PACKAGE__

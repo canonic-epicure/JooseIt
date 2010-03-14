@@ -11,6 +11,10 @@ use Deployer;
 use Index::HTML;
 
 
+`cp -f t/visual/index.html blib/index.html`;
+
+
+
 my $blib_dir        = dir("$FindBin::Bin/../blib");
 
 my $index           = Index::HTML->new({ 
@@ -21,23 +25,21 @@ my $index           = Index::HTML->new({
 #======================================================================================================================================================================================
 # taking the build time 
 
-my $now = time;
+my $now = Deployer->config->{ build_id };
 
 
 #======================================================================================================================================================================================
 # extracting urls of all scripts and styles
 
-my @scripts     = $index->get_scripts;
-my @styles      = $index->get_styles;
+my @scripts     = $index->get_scripts(1);
+my @styles      = $index->get_styles(1);
 
 
 #======================================================================================================================================================================================
 # replacing first script with concatenated one and removing others
 
-`cp blib/lib/Task/JooseIt.js blib/lib/Task/JooseIt.$now.js`;
-# `gzip -n -9 blib/lib/Task/JooseIt.$now.js`;
 
-$index->replace_script(shift @scripts, "lib/Task/JooseIt.$now.js");
+$index->replace_script(shift @scripts, "lib.$now/Task/JooseIt.js");
 
 foreach (@scripts) {
     $index->remove_script($_);
@@ -47,17 +49,30 @@ foreach (@scripts) {
 #======================================================================================================================================================================================
 # replacing first stylesheet link with concatenated one and removing others
 
-`cp blib/lib/JooseIt/static/css/concat-all.css blib/lib/JooseIt/static/css/concat-all.$now.css`;
-# `gzip -n -9 blib/lib/JooseIt/static/css/concat-all.$now.css`;
 
-$index->replace_stylesheet(shift @styles, "lib/JooseIt/static/css/concat-all.$now.css");
+$index->replace_stylesheet(shift @styles, "lib.$now/JooseIt/static/css/concat-all.css");
 
 foreach (@styles) {
     $index->remove_stylesheet($_);
 }
+
+#======================================================================================================================================================================================
+# creating new lib
+
+`mv blib/lib blib/lib.$now`;
+
+my $content = $index->content;
+
+$content =~ s!\[ '/jsan', 'lib' \]![ 'lib.$now', '/jsan' ]!;
+
+$content =~ s!lib/JooseIt/static/images/navigation/buttons.ie.js!lib.$now/JooseIt/static/images/navigation/buttons.ie.js!;
+$content =~ s!lib/JooseIt/static/images/navigation/buttons.nonie.js!lib.$now/JooseIt/static/images/navigation/buttons.nonie.js!;
+
+$index->content($content);
 
 
 #======================================================================================================================================================================================
 # writing result
 
 $index->save();
+

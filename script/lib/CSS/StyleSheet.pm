@@ -58,7 +58,6 @@ sub replace_image_with_data_uri {
     my ($self, $url) = @_;
     
     my $image_file  = file($url)->absolute($self->filename);
-#    print "$url\n";
     
     my $data_uri    = $self->embedder->get_data_uri_for($image_file);
     
