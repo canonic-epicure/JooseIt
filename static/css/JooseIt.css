@@ -78,3 +78,8 @@ a:hover {
     
     background-image : url(../images/forkme_right_green_007200.png);
 }
+
+
+.jit_nav_button div {
+	left : 0px;
+}
