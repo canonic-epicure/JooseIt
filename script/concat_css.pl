@@ -24,7 +24,7 @@ my $task_file       = file($blib_dir, 'lib', 'JooseIt', 'static', 'css', 'concat
 
 my $index           = Index::HTML->new( filename => $blib_dir->file('index.html'));
 
-my @styles          = $index->get_styles;
+my @styles          = $index->get_styles(1);
 
 
 #======================================================================================================================================================================================

@@ -59,7 +59,7 @@ foreach (@styles) {
 #======================================================================================================================================================================================
 # creating new lib
 
-`mv blib/lib blib/lib.$now`;
+`cp -r blib/lib blib/lib.$now`;
 
 my $content = $index->content;
 
@@ -67,6 +67,8 @@ $content =~ s!\[ '/jsan', 'lib' \]![ 'lib.$now', '/jsan' ]!;
 
 $content =~ s!lib/JooseIt/static/images/navigation/buttons.ie.js!lib.$now/JooseIt/static/images/navigation/buttons.ie.js!;
 $content =~ s!lib/JooseIt/static/images/navigation/buttons.nonie.js!lib.$now/JooseIt/static/images/navigation/buttons.nonie.js!;
+
+$content =~ s!disableCaching = true!disableCaching = false!;
 
 $index->content($content);
 
