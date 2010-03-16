@@ -27,9 +27,12 @@ has 'separator' => (
 
 
 sub add_image {
-    my ($self, $file_name) = @_;
+    my ($self, $file_name, $file_location) = @_;
     
-    push @{$self->images}, $file_name;
+    push @{$self->images}, { 
+        file_name       => $file_name,
+        file_location   => $file_location || file($file_name)->basename
+    };
 }
 
 
@@ -39,20 +42,23 @@ sub as_string {
     my $separator   = $self->separator;
     my @images      = @{$self->images};
     
-    my $content = "Content-Type: multipart/alternative; boundary=\"$separator\"\n\n";
+    my $content = "Content-Type: multipart/related; boundary=\"$separator\";\n\n";
     
-    foreach my $image_file (@images) {
+    foreach my $image_desc (@images) {
         $content .= '--' . $separator . "\n";
-        $content .= "Content-Location:" . file($image_file)->basename . "\n";
+        $content .= "Content-Location:" . $image_desc->{ file_location } . "\n";
         $content .= "Content-Transfer-Encoding:base64" . "\n\n";
         
-        $content .= $self->embedder->get_base64_content_for($image_file) . "\n";
+        $content .= $self->embedder->get_base64_content_for($image_desc->{ file_name }) . "\n";
     }
     
     if (@images) {
         $content .= "\n";
         $content .= '--' . $separator . '--' . "\n";
     }
+    
+    # strange Windows world )
+    $content =~ s/\n/\r\n/g;
     
     return $content;
 }

@@ -8,44 +8,62 @@ use lib "$FindBin::Bin/lib";
 
 use File::Find::Rule;
 use Path::Class;
+use Getopt::LL::Simple qw(
+    --mhtmlroot=s
+    --libroot=s
+);
 use Deployer;
 use CSS::Embedder;
 use CSS::StyleSheet;
 
+my $root        = Deployer->root;
+
+
+my $lib_root    = $ARGV{'--libroot'};
+$lib_root       = $lib_root ? "$root/$lib_root" : "$root/lib"; 
+my $mhtml_root  = $ARGV{'--mhtmlroot'} || "$lib_root/JooseIt/static/css/concat-all.ie.css";
+
 
 my $blib_dir        = dir("$FindBin::Bin/../blib");
-my $css_dir         = $blib_dir->subdir('lib', 'JooseIt', 'static', 'css');
+my $css_file        = $blib_dir->file('lib', 'JooseIt', 'static', 'css', 'concat-all.css');
 
 
 my $embedder        = CSS::Embedder->new();
 
 
-my @css_files = File::Find::Rule->or(
-    File::Find::Rule->file->name('*.css')
-)->in($css_dir);
-
-
 $, = "\n";
-
-foreach my $file (@css_files) {
-    
-    my $stylesheet = CSS::StyleSheet->new({
-        filename        => $file,
-        embedder        => $embedder
-    });
-    
-    my @background_urls     = $stylesheet->get_background_images_urls;
-    
-    print @background_urls;
-    
-    
-    foreach my $url (@background_urls) {
-        $stylesheet->replace_image_with_data_uri($url);
-    }
-    
-    $stylesheet->save();
-}
+$\ = "\n";
 
 
+#======================================================================================================================================================================================
+# embedding data uris (non-ie, ie8) 
 
+
+my $stylesheet = CSS::StyleSheet->new({
+    filename        => $css_file,
+    embedder        => $embedder
+});
+
+$stylesheet->embed_data_uri();
+
+my $non_ie_filename = "$css_file";
+$non_ie_filename =~ s/\.css$/.nonie.css/;
+
+$stylesheet->save($non_ie_filename);
+
+
+#======================================================================================================================================================================================
+# embedding mhtml links 
+
+$stylesheet = CSS::StyleSheet->new({
+    filename        => $css_file,
+    embedder        => $embedder
+});
+
+$stylesheet->embed_mhtml_frame($mhtml_root);
+
+my $ie_filename = "$css_file";
+$ie_filename =~ s/\.css$/.ie.css/;
+
+$stylesheet->save($ie_filename);
 

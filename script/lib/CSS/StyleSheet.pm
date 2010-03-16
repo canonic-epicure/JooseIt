@@ -4,6 +4,8 @@ use Moose;
 
 use Path::Class;
 
+use CSS::MHTMLFrame;
+
 
 has 'embedder' => (
     is => 'rw',
@@ -54,22 +56,69 @@ sub get_background_images_urls {
 }
 
 
-sub replace_image_with_data_uri {
-    my ($self, $url) = @_;
+sub replace_image_with_url {
+    my ($self, $url, $new_url) = @_;
     
-    my $image_file  = file($url)->absolute($self->filename);
-    
-    my $data_uri    = $self->embedder->get_data_uri_for($image_file);
-    
-    my $content     = $self->content;
     $url            = quotemeta $url;
     
-    $content =~ s!background-image\s*:\s*url\(["']?$url["']?\)!background-image : url($data_uri)!i;
+    my $content = $self->content;
+    
+    $content =~ s!background-image\s*:\s*url\(["']?$url["']?\)!background-image : url($new_url)!i;
     
     $self->content($content);
     
     return $self;
 }
+
+
+sub replace_image_with_data_uri {
+    my ($self, $url) = @_;
+    
+    my $image_file  = file($url)->absolute(file($self->filename)->dir);
+    
+    my $data_uri    = $self->embedder->get_data_uri_for($image_file);
+    
+    return $self->replace_image_with_url($url, $data_uri);
+}
+
+
+sub embed_data_uri {
+    my ($self) = @_;
+    
+    my @background_urls     = $self->get_background_images_urls;
+    
+    foreach my $url (@background_urls) {
+        $self->replace_image_with_data_uri($url);
+    }
+}
+
+
+sub embed_mhtml_frame {
+    my ($self, $mhtml_root) = @_;
+    
+    my $frame = CSS::MHTMLFrame->new({
+        embedder => $self->embedder
+    });
+    
+    my @background_urls     = $self->get_background_images_urls;
+    
+    my $counter = 1;
+    
+    foreach my $url (@background_urls) {
+        my $image_file  = file($url)->absolute(file($self->filename)->dir);
+        
+        $frame->add_image($image_file, $counter);
+        
+        $self->replace_image_with_url($url, $self->embedder->get_mhtml_uri_for($mhtml_root, $counter++));
+    }
+    
+    my $content = $self->content;
+    
+    $content = "/*\n" . $frame->as_string . "\n*/\n\n" . $content;
+    
+    $self->content($content);
+}
+
 
 
 __PACKAGE__

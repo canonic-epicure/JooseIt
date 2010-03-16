@@ -43,4 +43,11 @@ sub get_data_uri_for {
 }
 
 
+sub get_mhtml_uri_for {
+    my ($self, $base_url, $file_location) = @_;
+    
+    return "mhtml:$base_url!$file_location";
+}
+
+
 __PACKAGE__

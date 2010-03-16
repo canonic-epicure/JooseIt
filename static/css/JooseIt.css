@@ -77,6 +77,8 @@ a:hover {
     zoom : 1; 
     
     background-image : url(../images/forkme_right_green_007200.png);
+    
+    cursor : pointer;
 }
 
 

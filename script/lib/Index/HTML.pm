@@ -122,4 +122,19 @@ sub replace_stylesheet {
 }
 
 
+sub replace_stylesheet_branched {
+    my ($self, $url, $new_url_ie, $new_url_nonie) = @_;
+    
+    
+    my $content     = $self->content;
+    $url            = quotemeta $url;
+    
+    $content =~ s@<link\s+.*?href=["']$url["'].*?>@<!--[if IE]><link rel="stylesheet" type="text/css" href="$new_url_ie"><![endif]--><!--[if !IE]><!--><link rel="stylesheet" type="text/css" href="$new_url_nonie"><!--<![endif]-->@i;
+    
+    $self->content($content);
+    
+    return $self;
+}
+
+
 __PACKAGE__

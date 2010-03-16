@@ -50,7 +50,7 @@ foreach (@scripts) {
 # replacing first stylesheet link with concatenated one and removing others
 
 
-$index->replace_stylesheet(shift @styles, "lib.$now/JooseIt/static/css/concat-all.css");
+$index->replace_stylesheet_branched(shift @styles, "lib.$now/JooseIt/static/css/concat-all.ie.css", "lib.$now/JooseIt/static/css/concat-all.nonie.css");
 
 foreach (@styles) {
     $index->remove_stylesheet($_);
