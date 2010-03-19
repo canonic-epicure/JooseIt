@@ -26,14 +26,15 @@ my $skip_min    = $ARGV{'--skip_min'} || $fast;
 my $skip_embed  = $ARGV{'--skip_embed'} || $fast;
 
 
-my $build_id = Deployer->save_key('build_id', time);
+my $build_id        = Deployer->save_key('build_id', time);
+my $shotenjin_file  = dir(Deployer->config->{ jsan_root_dir })->file('bin', 'shotenjin_embed.pl');
 
 
 #======================================================================================================================================================================================
 # updating content 
 
 print `script/build_pages.sh`;
-print `/usr/local/lib/jsan/bin/shotenjin_embed.pl lib/`;
+print `$shotenjin_file lib/ --kw`;
 
 
 #======================================================================================================================================================================================

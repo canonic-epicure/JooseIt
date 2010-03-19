@@ -13,12 +13,13 @@ body {
 }
 
 .grayed {
-	background-color : #888888 !important;
+	background-color : #e3e0c7 !important;
 }
 
 
 a {
-	text-decoration : none
+	text-decoration : none;
+	color : #7f7c69;
 }
 
 
@@ -26,6 +27,10 @@ a:hover {
 	text-decoration : underline;
 }
 
+
+a:VISITED {
+	color : #7f7c69;
+}
 
 .JooseIt-Content {
 	width : 900px
@@ -43,13 +48,13 @@ a:hover {
     background-image: url(../images/background/page.png);
     background-repeat: repeat-x;
     
-    border-bottom : 1px solid #999999;
+    border-bottom : 1px solid #e3e0c7;
 }
 
 
 .JooseIt-Content-Footer {
-	border-top : 1px solid #555555;
-	color : #CCCCCC;
+	border-top : 1px solid #d2ceb0;
+	color : #AAA;
 	padding-top : 20px;
 	
 	font-size:12px;

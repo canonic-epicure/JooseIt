@@ -39,6 +39,7 @@ script/components.urls.txt
 script/concat_css.pl
 script/concat_js.pl
 script/config.json
+script/deploy.pl
 script/embed_images.pl
 script/inline_buttons.pl
 script/lib/CSS/Embedder.pm
@@ -47,7 +48,6 @@ script/lib/CSS/StyleSheet.pm
 script/lib/Deployer.pm
 script/lib/Image/PNG.pm
 script/lib/Index/HTML.pm
-script/make-fast.sh
 script/make.pl
 script/optimize_png.pl
 script/rsync_jsan.sh

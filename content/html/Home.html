@@ -7,7 +7,7 @@ It provides "keywords" or "syntactic sugar" for class declaration, object constr
 
 <p>Joose provides complete introspection for all Joose-using classes. This means you can ask classes about their attributes, parents, children, methods, etc., all using a well-defined API.</p>
 
-<p>Joose is based in large part on the [Moose][1] system, which in turn borrows a lot of from Perl 6 object system, as well as drawing on the best ideas from CLOS, Smalltalk, and many other languages.</p>
+<p>Joose is based in large part on the <a href="http://search.cpan.org/dist/Moose/lib/Moose.pm">Moose</a> system, which in turn borrows a lot of from Perl 6 object system, as well as drawing on the best ideas from CLOS, Smalltalk, and many other languages.</p>
 
 <h1 id="whatjooseisnot">WHAT Joose is not?</h1>
 
@@ -16,6 +16,40 @@ It provides "keywords" or "syntactic sugar" for class declaration, object constr
 <h1 id="whyjoose">WHY Joose?</h1>
 
 <p>Joose makes JavaScript OO both simpler and more powerful. It encapsulates JavaScript power tools in high-level declarative APIs which are easy to use. 
-Best of all, you don't need to be a wizard to use it. </p>
+Best of all, you don't need to be a wizard to use it. Here's the example of Joose class: </p>
 
-<p>But if you want to digg about in the guts, Joose lets you do that too, by using and extending its powerful introspection API or by providing your own meta class implementation.</p>
+<pre><code>Class('Person', {
+    has : {
+        firstName : { is : 'rw' },
+        lastName : { is : 'rw' }
+    }
+})
+</code></pre>
+
+<p>This is a complete and usable class definition! Another example:</p>
+
+<pre><code>Class('Person.User', {
+
+    isa : Person,
+
+    has : {
+        password : { is : 'rw', required : true },
+        lastLogin : { is : 'rw' }
+    },
+
+    methods : {
+
+        login : function (pwd) {
+            if (pwd != this.getPassword()) return false
+
+            this.setLastLogin(new Date())
+
+            return true
+        }
+    }
+})
+</code></pre>
+
+<p>Joose makes every attempt to provide as much convenience as possible during class construction/definition, but still stay out of your way if you want it to.
+In the same time, if you want to digg about in the guts, Joose lets you do that too, by using and extending its powerful introspection API (aka reflection) 
+or by providing your own meta class implementation.</p>

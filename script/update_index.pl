@@ -59,11 +59,15 @@ foreach (@styles) {
 #======================================================================================================================================================================================
 # creating new lib
 
+my $jsan_lib = dir(Deployer->config->{ jsan_root_dir })->subdir('lib') . "/";
+
 `cp -r blib/lib blib/lib.$now`;
+
+`rsync -r $jsan_lib blib/jsan.$now`;
 
 my $content = $index->content;
 
-$content =~ s!\[ '/jsan', 'lib' \]![ 'lib.$now', '/jsan' ]!;
+$content =~ s!\[ '/jsan', 'lib' \]![ 'lib.$now', 'jsan.$now' ]!;
 
 $content =~ s!lib/JooseIt/static/images/navigation/buttons.ie.js!lib.$now/JooseIt/static/images/navigation/buttons.ie.js!;
 $content =~ s!lib/JooseIt/static/images/navigation/buttons.nonie.js!lib.$now/JooseIt/static/images/navigation/buttons.nonie.js!;
@@ -72,6 +76,7 @@ $content =~ s!disableCaching = true!disableCaching = false!;
 
 $index->content($content);
 
+$index->replace_stylesheet('/jsan/Task/ExtJS/resources/css/ext-all.css', "jsan.$now/Task/ExtJS/resources/css/ext-all.css");
 
 #======================================================================================================================================================================================
 # writing result

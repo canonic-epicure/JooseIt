@@ -15,3 +15,12 @@ p {
 	
 	text-align : justify;
 }
+
+pre {
+	border : 1px dashed #d2ceb0;
+	font-family : Monaco,"Courier New",monospace;
+	font-size : 90%;
+	overflow : auto;
+	padding : 5px;
+	margin : 10px 0px;
+}

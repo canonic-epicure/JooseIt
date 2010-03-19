@@ -21,7 +21,42 @@ WHY Joose?
 ==========
 
 Joose makes JavaScript OO both simpler and more powerful. It encapsulates JavaScript power tools in high-level declarative APIs which are easy to use. 
-Best of all, you don't need to be a wizard to use it. 
+Best of all, you don't need to be a wizard to use it. Here's the example of Joose class: 
 
-But if you want to digg about in the guts, Joose lets you do that too, by using and extending its powerful introspection API or by providing your own meta class implementation.
+    Class('Person', {
+        has : {
+            firstName : { is : 'rw' },
+            lastName : { is : 'rw' }
+        }
+    })
 
+
+This is a complete and usable class definition! Another example:
+
+
+    Class('Person.User', {
+        
+        isa : Person,
+        
+        has : {
+            password : { is : 'rw', required : true },
+            lastLogin : { is : 'rw' }
+        },
+        
+        methods : {
+            
+            login : function (pwd) {
+                if (pwd != this.getPassword()) return false
+                
+                this.setLastLogin(new Date())
+                
+                return true
+            }
+        }
+    })
+
+Joose makes every attempt to provide as much convenience as possible during class construction/definition, but still stay out of your way if you want it to.
+In the same time, if you want to digg about in the guts, Joose lets you do that too, by using and extending its powerful introspection API (aka reflection) 
+or by providing your own meta class implementation.
+
+[1]: http://search.cpan.org/dist/Moose/lib/Moose.pm
