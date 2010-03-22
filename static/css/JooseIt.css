@@ -90,3 +90,7 @@ a:VISITED {
 .jit_nav_button div {
 	left : 0px;
 }
+
+.x-masked {
+    overflow: auto !important;
+}
