@@ -79,6 +79,18 @@ $index->content($content);
 $index->replace_stylesheet('/jsan/Task/ExtJS/resources/css/ext-all.css', "jsan.$now/Task/ExtJS/resources/css/ext-all.css");
 
 #======================================================================================================================================================================================
+# embedding some SEO content
+
+my $seo_content = $blib_dir->file('..', 'content', 'html', 'Home.html')->slurp;
+
+$content = $index->content;
+
+$content =~ s!<noscript></noscript>!<noscript>$seo_content</noscript>!;
+
+$index->content($content);
+
+
+#======================================================================================================================================================================================
 # writing result
 
 $index->save();
