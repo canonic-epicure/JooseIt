@@ -24,33 +24,47 @@ Joose makes JavaScript OO both simpler and more powerful. It encapsulates JavaSc
 Best of all, you don't need to be a wizard to use it. Here's the example of Joose class: 
 
     Class('Person', {
-        has : {
-            firstName : { is : 'rw' },
-            lastName : { is : 'rw' }
+        
+        methods : {
+            eat : function (food) {
+                console.log('yummy')
+                
+                return 'yummy'
+            }
         }
     })
 
 
 This is a complete and usable class definition! Another example:
 
-
-    Class('Person.User', {
-        
+    
+    Class('Person.Tidy', {
         isa : Person,
         
-        has : {
-            password : { is : 'rw', required : true },
-            lastLogin : { is : 'rw' }
+        before : {
+            eat : function (food) {
+                this.washHands()
+            }
+        },
+        
+        after : {
+            eat : function (food) {
+                this.brushTeeth()
+            }
         },
         
         methods : {
+        
+            washHands : function (food) {
+                console.log('washing hands')
+            },
             
-            login : function (pwd) {
-                if (pwd != this.getPassword()) return false
-                
-                this.setLastLogin(new Date())
-                
-                return true
+            brushTeeth : function (food) {
+                console.log('brushing teeth')
+            },
+            
+            eat : function () {
+                this.SUPER()
             }
         }
     })

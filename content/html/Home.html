@@ -19,32 +19,46 @@ It provides "keywords" or "syntactic sugar" for class declaration, object constr
 Best of all, you don't need to be a wizard to use it. Here's the example of Joose class: </p>
 
 <pre><code>Class('Person', {
-    has : {
-        firstName : { is : 'rw' },
-        lastName : { is : 'rw' }
+
+    methods : {
+        eat : function (food) {
+            console.log('yummy')
+
+            return 'yummy'
+        }
     }
 })
 </code></pre>
 
 <p>This is a complete and usable class definition! Another example:</p>
 
-<pre><code>Class('Person.User', {
-
+<pre><code>Class('Person.Tidy', {
     isa : Person,
 
-    has : {
-        password : { is : 'rw', required : true },
-        lastLogin : { is : 'rw' }
+    before : {
+        eat : function (food) {
+            this.washHands()
+        }
+    },
+
+    after : {
+        eat : function (food) {
+            this.brushTeeth()
+        }
     },
 
     methods : {
 
-        login : function (pwd) {
-            if (pwd != this.getPassword()) return false
+        washHands : function (food) {
+            console.log('washing hands')
+        },
 
-            this.setLastLogin(new Date())
+        brushTeeth : function (food) {
+            console.log('brushing teeth')
+        },
 
-            return true
+        eat : function () {
+            this.SUPER()
         }
     }
 })
