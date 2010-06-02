@@ -39,7 +39,7 @@ my @styles      = $index->get_styles(1);
 # replacing first script with concatenated one and removing others
 
 
-$index->replace_script(shift @scripts, "lib.$now/Task/JooseIt.js");
+$index->replace_script(shift @scripts, "lib.$now/Task/JooseIt/Bundle.js");
 
 foreach (@scripts) {
     $index->remove_script($_);
@@ -85,7 +85,7 @@ my $seo_content = $blib_dir->file('..', 'content', 'html', 'Home.html')->slurp;
 
 $content = $index->content;
 
-$content =~ s!<noscript></noscript>!<noscript>$seo_content</noscript>!;
+$content =~ s!<noscript></noscript>!<noscript><a href="http://joose.it/blog>Link to our blog</a>$seo_content</noscript>!;
 
 $index->content($content);
 

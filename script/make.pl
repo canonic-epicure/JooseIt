@@ -42,6 +42,8 @@ print `$shotenjin_file lib/ --kw`;
 
 print `./Build clean`;
 
+print `./Build task --task_name=all`;
+
 print `./Build`;
 
 print `cp -f t/visual/index.html blib/index.html`;
@@ -58,9 +60,7 @@ print `script/inline_buttons.pl --libroot lib.$build_id`;
 #======================================================================================================================================================================================
 # concatenating/minimizing js 
 
-print `script/concat_js.pl`;
-
-print `java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/Task/JooseIt.js blib/lib/Task/JooseIt.js` unless $skip_min; 
+print `java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/Task/JooseIt.js blib/lib/Task/JooseIt/Bundle.js` unless $skip_min; 
     
 
 #======================================================================================================================================================================================
