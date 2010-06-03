@@ -60,7 +60,9 @@ print `script/inline_buttons.pl --libroot lib.$build_id`;
 #======================================================================================================================================================================================
 # concatenating/minimizing js 
 
-print `java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/Task/JooseIt.js blib/lib/Task/JooseIt/Bundle.js` unless $skip_min; 
+`chmod 644 blib/lib/Task/JooseIt/Bundle.js`;
+
+print `java -jar bin/yuicompressor-2.4.2.jar -o blib/lib/Task/JooseIt/Bundle.js blib/lib/Task/JooseIt/Bundle.js` unless $skip_min; 
     
 
 #======================================================================================================================================================================================
