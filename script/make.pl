@@ -42,6 +42,8 @@ print `$shotenjin_file lib/ --kw`;
 
 print `./Build clean`;
 
+$ENV{ JSANLIB } = Deployer->config->{ jsan_root_dir };
+
 print `./Build task --task_name=all`;
 
 print `./Build`;
