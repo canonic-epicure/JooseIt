@@ -31,7 +31,7 @@ my $embedder = CSS::Embedder->new;
 my $blib_dir        = dir("$FindBin::Bin/../blib");
 my $buttons_dir     = $blib_dir->subdir("lib/JooseIt/static/images/navigation");
 
-my $buttons = [ 'about', 'download', 'forum', 'home', 'resources', 'go-back' ];
+my $buttons = [ 'about', 'download', 'blog', 'home', 'resources', 'go-back' ];
 
 
 #======================================================================================================================================================================================
