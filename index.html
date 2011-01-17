@@ -51,10 +51,10 @@
 	
 	<body>
         <script type="text/javascript">
-            JooseX.Namespace.Depended.Manager.my.INC = [ '/jsan', 'lib' ]
-            JooseX.Namespace.Depended.Manager.my.disableCaching = true
+            use.paths = [ 'lib', '/jsan' ]
             
             use([ 'JooseIt' ], function () {
+            	
                 JooseIt().run('/').now()
                 
                 _gaq = [];
