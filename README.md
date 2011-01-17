@@ -1,3 +1,3 @@
-Joose.it! web-site, written in Symbie framework:
+Joose.it! web-site, written with Symbie framework:
 
 <http://joose.it>
