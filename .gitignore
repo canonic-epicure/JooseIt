@@ -1,12 +1,5 @@
-_build
-Build
-blib
+.build
 .project
 .externalToolBuilders
-MANIFEST.bak
-doc
-META.json
-Makefile.PL
-Makefile
-/inc
 script/config.json
+JooseIt-*
