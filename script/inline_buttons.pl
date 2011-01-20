@@ -13,22 +13,14 @@ use Getopt::LL::Simple qw(
     --libroot=s
 );
 
-use Deployer;
 use CSS::Embedder;
 use CSS::MHTMLFrame;
 
-my $root        = Deployer->root;
 
-my $lib_root    = $ARGV{'--libroot'};
-$lib_root       = $lib_root ? "$root/$lib_root" : "$root/lib"; 
-my $mhtml_root  = $ARGV{'--mhtmlroot'} || "$lib_root/JooseIt/static/images/navigation/buttons.txt";
+my $mhtml_root  = "http://jooseit.dev/lib/JooseIt/static/images/navigation/buttons.txt";
+my $embedder    = CSS::Embedder->new;
 
-
-
-my $embedder = CSS::Embedder->new;
-
-
-my $blib_dir        = dir("$FindBin::Bin/../blib");
+my $blib_dir        = dir($ARGV[ 0 ]);
 my $buttons_dir     = $blib_dir->subdir("lib/JooseIt/static/images/navigation");
 
 my $buttons = [ 'about', 'download', 'blog', 'home', 'resources', 'go-back' ];
