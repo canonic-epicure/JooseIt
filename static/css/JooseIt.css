@@ -14,6 +14,10 @@ body {
 	position       : relative;
 }
 
+body.ext-ie7, body.ext-ie6 {
+	overflow-y : scroll !important;
+}
+
 .grayed {
 	background-color : #e3e0c7 !important;
 }
