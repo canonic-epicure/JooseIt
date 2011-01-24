@@ -10,6 +10,8 @@ body {
 	overflow-y : auto !important;
 	
 	background-color : white;
+	
+	position       : relative;
 }
 
 .grayed {
